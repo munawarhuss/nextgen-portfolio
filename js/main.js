@@ -25,6 +25,25 @@ function reveal() {
 
 window.addEventListener("scroll", reveal);
 
+// Typed.js Initialization
+document.addEventListener('DOMContentLoaded', function() {
+    var options = {
+        strings: ['Built in <span class="highlight-navy">Ladakh.</span><br>Designed for the <span class="highlight-cyan">Digital World.</span>'],
+        typeSpeed: 60,
+        backSpeed: 0,
+        showCursor: true,
+        cursorChar: '|',
+        autoInsertCss: true,
+        onComplete: function(self) {
+            const cursor = document.querySelector('.typed-cursor');
+            if (cursor) cursor.style.display = 'none';
+        }
+    };
+    if (document.getElementById('typed-text')) {
+        new Typed('#typed-text', options);
+    }
+});
+
 // Trigger once on load
 reveal();
 

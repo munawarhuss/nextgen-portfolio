@@ -143,7 +143,7 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('../assets/hero_ladakh.jpg');
+    background: radial-gradient(circle at center, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 60%), url('../assets/hero_ladakh.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -153,23 +153,38 @@ h4 {
 
 .hero-content {
     animation: fadeInUp 1s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.hero h1 {
-    font-size: 4.5rem;
-    margin-bottom: 10px;
-    color: var(--text-dark);
-    text-shadow: 0 4px 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
-}
-
-.hero h2 {
-    font-size: 3.5rem;
+.hero-title {
+    font-size: 4.2rem;
     margin-bottom: 20px;
-    text-shadow: 0 4px 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+    color: var(--text-dark);
+    line-height: 1.2;
+    min-height: 160px; /* Prevents layout jump while typing */
+    text-shadow: 0 10px 30px rgba(255, 255, 255, 0.9), 0 5px 15px rgba(255, 255, 255, 0.7);
 }
 
-.hero h2 .highlight-cyan {
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 0, 0, 0.7);
+.hero-title .highlight-cyan {
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.9);
+}
+
+.typed-cursor {
+    color: var(--primary-cyan);
+    font-size: 4.2rem;
+    font-weight: 300;
+}
+
+.delay-fade {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 2.2s; /* Waits for typing animation to finish */
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
 .tagline {
@@ -487,12 +502,8 @@ h4 {
 
 /* Responsive */
 @media (max-width: 992px) {
-    .hero h1 {
-        font-size: 3.5rem;
-    }
-
-    .hero h2 {
-        font-size: 2.5rem;
+    .hero-title, .typed-cursor {
+        font-size: 3.2rem;
     }
 
     .approach-grid,
@@ -508,19 +519,31 @@ h4 {
 
 @media (max-width: 768px) {
     .navbar {
-        padding: 20px;
+        padding: 0 20px;
+        height: 60px;
+    }
+
+    .logo-img {
+        height: 90px;
+        top: 0px;
     }
 
     .nav-links {
         display: none;
     }
 
-    .hero h1 {
-        font-size: 2.8rem;
+    .hero {
+        /* Mobile browsers (especially iOS Safari) struggle with fixed background attachments, making images disappear */
+        background-attachment: scroll !important;
     }
 
-    .hero h2 {
-        font-size: 2rem;
+    .hero-title, .typed-cursor {
+        font-size: 2.2rem;
+        min-height: 150px;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
     }
 
     .contact-info {
